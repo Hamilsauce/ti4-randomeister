@@ -85,7 +85,7 @@ resetButton.addEventListener('click', () => {
 /* End of Eventlisteners */
 
 //See button HTML in addInput() below - const is=  run everytime a user deselects a text input - adds text content to playername lis=>t
-const getPlayerData= (nameBoxes) =>{
+const getPlayerData = (nameBoxes) => {
   nameBoxes.forEach(box => {
     //Input Validation
     const [bVal, boxID] = [box.value, parseInt(box.name.split('').pop()) - 1];
@@ -107,7 +107,7 @@ const getPlayerData= (nameBoxes) =>{
   return playerNames;
 }
 
-const getRaceList= () =>{
+const getRaceList = () => {
   //iterate over checklist of races, snag the checked ones, note that for loop is preferable to forEach here because need to reference index of each checklist item/race
   const selectBoxes = [];
 
@@ -120,7 +120,7 @@ const getRaceList= () =>{
   return selectBoxes;
 }
 
-const cleanNames= (name) =>{
+const cleanNames = (name) => {
   //trim trailing spaces from names (split name into array, if a space is found at end, return the new array sans the space, if no trialing space, return original array)
   const chars = name.split('');
 
@@ -131,7 +131,7 @@ const cleanNames= (name) =>{
   }
 }
 
-const filterNames= (names) =>{
+const filterNames = (names) => {
   // filter out elements in playerName array that are empty or only space
   const trimmed = names.filter(n => {
     if ((n != '' && n != ' ')) {
@@ -141,7 +141,7 @@ const filterNames= (names) =>{
   return trimmed;
 }
 
-const addInputs= (count) =>{
+const addInputs = (count) => {
   /*
   for each player (according to counter selection), 
     1) add text input html to output array, each with player ID label/Id/Name/selectors incremented accordingly.
@@ -167,7 +167,7 @@ const addInputs= (count) =>{
 }
 
 
-const toggleSubmit= () =>{
+const toggleSubmit = () => {
   //show or hide submit buton
   const textFields = document.querySelectorAll('.name-input-field');
 
@@ -181,7 +181,7 @@ const toggleSubmit= () =>{
   return textFields;
 }
 
-const addPlayer= (data) =>{
+const addPlayer = (data) => {
   data.forEach(d => {
     players.push({
       id: d[0],
@@ -227,7 +227,7 @@ const addPlayer= (data) =>{
 }
 
 //Calls getRace method for each player, repeat once (in order to get  races per player)
-const doleOut= (races) =>{
+const doleOut = (races) => {
   let pl = players;
   for (let i = 0; i < 2; i++) {
     pl.forEach(p => {
@@ -236,10 +236,12 @@ const doleOut= (races) =>{
   }
 }
 
-const displays= () =>{
-  //concats the player displayData() output from each player object and pushes to DOM
+const displays = () => {
+  // concats the player displayData() output from each player object and pushes to DOM
+  
   const choiceCount = document.querySelector('#choice-counter').value;
   let pl = players;
+  
   let outText = [];
 
   pl.forEach(p => {
@@ -251,14 +253,14 @@ const displays= () =>{
   raceDisplay.innerHTML = outText.join('<br>');
   raceDisplay.style.display = 'block';
 
-  //move player data to storage session data gets cleared
+  // move player data to storage session data gets cleared
 
   localStorage.setItem('pastResults', JSON.stringify(players));
 
   clearInputs(choiceCount);
 }
 
-const getResultHeight= () =>{
+const getResultHeight = () => {
   // just used to fix some styling depending on height (due to scroll bar making it look shitty)
   const resultY = raceDisplay.clientHeight;
 
@@ -266,10 +268,11 @@ const getResultHeight= () =>{
     raceDisplay.style.borderTopRightRadius = '3px';
     raceDisplay.style.borderBottomRightRadius = '3px';
   }
+  
   return resultY;
 }
 
-const clearInputs= (cCount) =>{
+const clearInputs = (cCount) => {
   const nameInputs = document.querySelectorAll('.name-input-field');
   const inputColumn = document.querySelector('.setting-inputs');
   const gridContainer = document.querySelector('.grid-container');
