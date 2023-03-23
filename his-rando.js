@@ -37,6 +37,7 @@ onEvent("player6", "input", function() {
 
 *********************************/
 
+// hypothetical but definitely exists parent html element containing the group of html input elements
 const parentOfInputs = document.querySelector('.name-input-container');
 
 parentOfInputs.addEventListener('input', event => {
@@ -70,10 +71,10 @@ onEvent("randomizeButton", "click", function() {
 
     /*********************************
    
-      Create a collection of objects to represent each Power;
+      Create an array of objects to represent each Power;
   
-      Replace the for loop with 6 conditionals
-      with a forEach on the power objects
+      Replace the for loop containing 6 conditionals
+      with the forEach method on the power objects array
     
      *********************************/
 
@@ -110,7 +111,7 @@ onEvent("randomizeButton", "click", function() {
       },
     ];
 
-    // Better version of for loop on line 129
+    // Better version of for loop on line 131
     powers.forEach((power, i) => {
       setText("player" + i + "Name", getText("player" + i) + " will play as");
 
@@ -124,9 +125,7 @@ onEvent("randomizeButton", "click", function() {
       setImageURL("image" + i, power.image);
       setImageURL("image" + (i + 6), power.image);
     });
-
-
-
+    
 
     var powers = ["The Ottoman Empire", "The Hapsburgs", "England", "France", "Papacy", "The Protestants", ];
 
